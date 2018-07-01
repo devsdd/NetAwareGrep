@@ -54,19 +54,16 @@ def test_expand_subnet():
 def test_queryString_for_slash24():
     slash24 = "172.16.1.0/24"
     queryString = queryString_for_common_netmasks("172.16.1.0", "24")
-    print(queryString)
     assert queryString == "172.16.1."
 
 def test_queryString_for_slash16():
     slash16 = "172.16.1.0/16"
     queryString = queryString_for_common_netmasks("172.16.1.0", "16")
-    print(queryString)
     assert queryString == "172.16."
 
 def test_queryString_for_slash8():
     slash8 = "172.16.1.0/8"
     queryString = queryString_for_common_netmasks("172.16.1.0", "8")
-    print(queryString)
     assert queryString == "172."
 
 def test_config_file_present():
