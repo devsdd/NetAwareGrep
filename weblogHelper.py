@@ -29,18 +29,9 @@ def validate_CIDR(cidr):
     """
     Ensures cidr is a legitimate IPv4 or IPv6
     host or network address
-    :param cidr: "net"|"host"|False
-    :return:
+    :return: "net"|"host"|False
     """
-    '''
-    if "/" in cidr and ipaddress.ip_network(cidr):
-        return "net"
-    elif ipaddress.ip_address(cidr):
-        return "host"
-    else:
-        return False
-    '''
-
+    
     try:
         if(IPAddress(cidr)):
             return "host"
@@ -76,7 +67,7 @@ def expand_subnet(cidr):
 
     ips = []
     for ip in IPNetwork(cidr):
-        ips.append(str(ip) + " ")    # needed to distinguish .1, .12 and .123 and not triple count such lines
+        ips.append(str(ip) + " ")    # needed to distinguish x.x.x.1, x.x.x.12 and x.x.x.123 and not triple-count such lines
 
     return ips
 
@@ -106,14 +97,9 @@ if __name__ == "__main__":
 
     if var == "net":
         '''
-        For common netmasks like /8, /16 and /24,
-        ranges of IP's in them align neatly with 
-        octet boundaries in the dotted-decimal 
-        notation of an IPv4 IP, so we don't need to  
-        go the computationally heavy route of 
-        grepping every IP in the network against 
-        every line in the file; we can just snip out 
-        the network part and grep with it.
+        For common netmasks like /8, /16 and /24, ranges of IP's in them align neatly with octet boundaries in the dotted-decimal 
+        notation of an IPv4 IP, so we don't need to go the computationally heavy route of grepping every IP in the network against 
+        every line in the file; we can just snip out the network part and grep with it.
         '''
         ip = cidr.split('/')[0]
         netmask = cidr.split('/')[1]
@@ -128,7 +114,6 @@ if __name__ == "__main__":
 
     logfile = get_settings()['logfile']
     res = grep_in_log(iplist, logfile)
-    print(type(res))
     for line in res:
         print(line)
 
