@@ -8,16 +8,6 @@ def setup():
     global cidr
     cidr = parse_command_line()
 
-
-'''
-These tests require command-line arguments which 
-are not currently working with the IDE (PyCharm)
-It works if run as follows from the command-line:
-$ py.test --ip 1.1.1.1
-
-Args have been hardcoded into the script for now
-'''
-
 @pytest.mark.unit
 def test_parse_command_line():
     """
@@ -27,19 +17,6 @@ def test_parse_command_line():
     """
     if not isinstance(cidr, basestring):
         assert False
-
-'''
-only needed by ipaddress module
-
-def test_is_CIDR_unicode():
-    """
-    ipaddress library needs IP address/mask string
-    to be a unicode object
-    :return: Bool
-    """
-    if not isinstance(cidr, unicode):
-        assert False
-'''
 
 def test_validate_CIDR():
     good_inputs =   ("192.168.1.1",
@@ -59,11 +36,10 @@ def test_validate_CIDR():
                      )
 
     for i in good_inputs:
-        assert validate_CIDR(i) #.decode('utf8'))
+        assert validate_CIDR(i)
 
     for j in bad_inputs:
-        # with pytest.raises(AddrFormatError):
-        if not validate_CIDR(j): #.decode('utf8'))
+        if not validate_CIDR(j):
             assert True
 
 
