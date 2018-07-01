@@ -1,0 +1,6 @@
+
+make special cases for /8 /16 and /24 where you don't need to expand their subnets
+
+dockerize with the logfile on a mounted volume
+
+download log file within code?

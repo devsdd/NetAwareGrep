@@ -1,0 +1,3 @@
+# all config data goes here
+
+logfile: 'public_access.log.txt'
