@@ -51,14 +51,6 @@ def test_host_or_net():
 def test_expand_subnet():
     assert isinstance(expand_subnet(cidr), list)
 
-def test_config_file_present():
-    assert os.path.isfile("settings.yaml")
-
-def test_get_settings():
-    global logfile
-    logfile = get_settings()['logfile']
-    assert logfile
-
 def test_queryString_for_slash24():
     slash24 = "172.16.1.0/24"
     queryString = queryString_for_common_netmasks("172.16.1.0", "24")
@@ -77,11 +69,18 @@ def test_queryString_for_slash8():
     print(queryString)
     assert queryString == "172."
 
+def test_config_file_present():
+    assert os.path.isfile("settings.yaml")
+
+def test_get_settings():
+    global logfile
+    logfile = get_settings()['logfile']
+    assert logfile
+
 def test_grep_in_log():
-    ''' The actual function has been designed
-    to only operate on a single IP at a time,
-    (multiple IPs passed as a list are handled
-    one-at-a-time), so we test with only a single IP
+    '''
+    The actual function has been designed to only operate on a single IP at a time, (multiple IPs passed as a list are handled
+    one-at-a-time), so we test with only a single IP.
     '''
 
     singleIP = cidr.split('/')[0]
